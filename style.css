@@ -1,3 +1,14 @@
+:root {
+    --color-bg: #f8f9fa;
+    --color-side-bg: #f0f4f8;
+    --color-border: #d0d7de;
+    --color-text: #333;
+    --color-hover-bg: #007bff;
+    --color-hover-text: #ffffff;
+    --color-active-bg: #e6ecf1;
+    --color-active-hover-bg: #c7d3de;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -5,13 +16,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f8f9fa;
+    background-color: var(--color-bg);
 }
 
 aside {
     width: 220px;
-    background-color: #f0f4f8;
-    border-right: 1px solid #d0d7de;
+    background-color: var(--color-side-bg);
+    border-right: 1px solid var(--color-border);
     padding: 1rem;
     box-sizing: border-box;
     height: 100vh;
@@ -33,7 +44,7 @@ aside nav li {
 aside nav a {
     display: block;
     text-decoration: none;
-    color: #333;
+    color: var(--color-text);
     padding: 0.5rem 0.75rem;
     border-radius: 6px;
 }
@@ -41,12 +52,17 @@ aside nav a {
 aside nav a:hover,
 aside nav a:focus,
 aside nav a:active {
-    background-color: #e6ecf1;
+    background-color: var(--color-hover-bg);
+    color: var(--color-hover-text);
 }
 
 aside nav a.active {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--color-active-bg);
+    color: var(--color-text);
+}
+
+aside nav a.active:hover {
+    background-color: var(--color-active-hover-bg);
 }
 
 section {
@@ -61,7 +77,7 @@ footer {
     text-align: center;
     padding: 0.75rem 0.75rem 0.75rem 240px;
     font-size: 0.875rem;
-    color: #666;
-    border-top: 1px solid #d0d7de;
-    background-color: #f8f9fa;
+    color: var(--color-text);
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-bg);
 }

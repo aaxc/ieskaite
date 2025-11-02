@@ -1,28 +1,44 @@
 ## 📁 Projekta struktūra
 
 ```
-project/
+DarbsNr3_DAAB/
 │
-├── index.php
-├── .env
+├── app/                           
+│   │
+│   ├── Core/                      # Pamatfunkcijas un sistēmas kodols
+│   │   ├── Controller.php         # Bāzes kontroliera klase
+│   │   ├── Database.php           # Datubāzes savienojuma klase
+│   │   ├── Env.php                # .env faila nolasīšana vides mainīgumos
+│   │
+│   ├── Controllers/               
+│   │   └── IndexController.php    # Sākumlapas kontrolieris
+│   │
+│   ├── Components/                # Lietotnes atkārtoti izmantojami moduļi
+│   │   ├── Content.php            # Satura komponentes apstrāde
+│   │   └── Menu.php               # Darbinieku izvēlnes ģenerēšana (ar menu() helper funkciju)
+│   │
+│   ├── Entities/                  
+│   │   └── Person.php             # Darbinieka datu modelis (personas entītija)
+│   │
+│   ├── Repositories/              
+│   │   └── PersonRepository.php   # Datu vaicājumi `personas` tabulai
+│   │
+│   ├── Validators/                
+│   │   └── Validator.php          # Bāzes validācijas klase
+│   │
+│   ├── Views/                     # Skatu (HTML) šabloni
+│   │   ├── index.php              # Galvenā satura skats (parāda aprakstu)
+│   │   └── partials/              # Kopīgi izmantoti skatu elementi
+│   │       ├── head.php           # <head> sadaļa ar meta un stila saitēm
+│   │       ├── menu.php           # Izvēlne
+│   │       └── footer.php         # Lapaspuses footer
+│   │
+│   └── Index.php                  # Lietotnes inicializācijas fails
 │
-├── app/
-│   ├── Core/
-│   │   ├── Env.php
-│   │   ├── Database.php
-│   │   └── Controller.php
-│   │
-│   ├── Controllers/
-│   │   └── IndexController.php
-│   │
-│   ├── Views/
-│   │   └── home.php
-│   │
-│   └── Index.php
-│
-└── public/
-    └── css/
-        └── style.css
+├── ieskaite_Nr3.php               # Galvenais ieejas punkts (autoloader + app palaišana)
+├── style.css                      # Galvenais stila fails
+├── .env                           # Lokālie vides mainīgie (netiek glabāts repo)
+└── .env.example                   # Parauga vides konfigurācijas fails
 ```
 
 ---

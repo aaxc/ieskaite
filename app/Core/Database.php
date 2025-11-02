@@ -7,12 +7,18 @@ namespace App\Core;
 use mysqli;
 use RuntimeException;
 
+/**
+ * Datubāzes savienojuma klase.
+ *
+ * @author Dainis Abols
+ */
 readonly class Database
 {
-    private mysqli $connection;
+    public mysqli $connection;
 
     public function __construct()
     {
+        // Izveidojam jaunu MySQLi savienojumu
         $this->connection = new mysqli(
             hostname: getenv('DB_HOST'),
             username: getenv('DB_USER'),
@@ -20,13 +26,9 @@ readonly class Database
             database: getenv('DB_NAME'),
         );
 
+        // Pārbaudām savienojuma kļūdas
         if ($this->connection->connect_error) {
             throw new RuntimeException('Database connection failed: ' . $this->connection->connect_error);
         }
-    }
-
-    public function getConnection(): mysqli
-    {
-        return $this->connection;
     }
 }

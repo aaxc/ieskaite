@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace App\Entities;
 
+/**
+ * Persona entītijas klase.
+ *
+ * @author Dainis Abols
+ */
 readonly class Person
 {
     public function __construct(
@@ -14,6 +19,11 @@ readonly class Person
     ) {
     }
 
+    /**
+     * Nokopējam esošo personu un padaram to aktīvu.
+     *
+     * @return \App\Entities\Person
+     */
     public function makeActive(): Person
     {
         return new Person(
@@ -24,6 +34,13 @@ readonly class Person
         );
     }
 
+    /**
+     * Izveidojam personas objektu no datubāzes rindas.
+     *
+     * @param array $row
+     *
+     * @return \App\Entities\Person
+     */
     public static function fromRow(array $row): Person
     {
         return new Person(

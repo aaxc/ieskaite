@@ -7,10 +7,16 @@ namespace App;
 use App\Controllers\IndexController;
 use App\Core\Env;
 
+/**
+ * Galvenā lietotnes klase.
+ *
+ * @author Dainis Abols
+ */
 final class Index
 {
     public function __construct()
     {
+        // Priekšielāde klasēm
         require_once __DIR__ . '/Core/Env.php';
         require_once __DIR__ . '/Core/Database.php';
         require_once __DIR__ . '/Core/Controller.php';
@@ -24,8 +30,10 @@ final class Index
 
     public function run(): void
     {
+        // Ielādē vides mainīgos no .env faila
         new Env(__DIR__ . '/../.env')->load();
 
+        // Izsauc galveno kontrolieri
         $controller = new IndexController();
         $controller->index();
     }

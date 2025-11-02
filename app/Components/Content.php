@@ -9,26 +9,36 @@ use App\Entities\Person;
 use App\Repositories\PersonRepository;
 use App\Validators\Validator;
 
+/*
+ * Satura komponenta klase.
+ *
+ * @author Dainis Abols
+ */
+
 readonly class Content
 {
-    private Person $person;
+    public Person $person;
 
     public function __construct(
         private PersonRepository $repository,
         private array $request,
     ) {
+        // Nolasām personu pēc ID no pieprasījuma
         $personId = $this->request['person'] ?? 1;
         Validator::validate($personId);
 
+        // Iegūstam personu no repozitorija
         $this->person = $this->repository->getPersonById((int) $personId);
-    }
-
-    public function getPerson(): Person
-    {
-        return $this->person;
     }
 }
 
+/**
+ * Palīgfunkcija satura komponenta izveidei.
+ *
+ * @param array $request
+ *
+ * @return \App\Components\Content
+ */
 function content(array $request): Content
 {
     return new Content(new PersonRepository(new Database()), $request);
