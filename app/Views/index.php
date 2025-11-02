@@ -2,6 +2,8 @@
 <html lang="en">
 <?php include require __DIR__ . '/../Views/partials/head.php'; ?>
 <body>
-<h1><?php echo $message; ?></h1>
+<?php include require __DIR__ . '/../Views/partials/menu.php'; ?>
+<section><?php echo $content; ?></section>
 </body>
+<?php include require __DIR__ . '/../Views/partials/footer.php'; ?>
 </html>

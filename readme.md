@@ -32,8 +32,8 @@ project/
 ### 1. Klonējam (https://github.com/aaxc/ieskaite) vai izveidojam mapi no zip arhīva
 
 ```bash
-cd ~/projects/DarbsNr3_DAAB
-git clone https://github.com/aaxc/ieskaite
+git clone https://github.com/aaxc/ieskaite DarbsNr3_DAAB
+cd DarbsNr3_DAAB
 ```
 
 ### 2. Pārliecināmies, ka ir instalēts PHP 8.4  un MySQL
