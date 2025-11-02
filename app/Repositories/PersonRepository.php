@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Core\Database;
+use App\Entities\Person;
 use mysqli;
 use mysqli_result;
 
@@ -18,23 +19,32 @@ readonly class PersonRepository
         $this->conn = $this->db->getConnection();
     }
 
-    public function getPersonList(): array
+    public function getPersonList(int $activePersonId): array
     {
-        $result = $this->runQuery("SELECT id, vards FROM personas ORDER BY vards ASC");
+        $result = $this->runQuery("SELECT * FROM personas ORDER BY vards ASC");
 
         if ($result === false) {
             return [];
         }
 
-        $rows = [];
+        $persons = [];
         while ($row = $result->fetch_assoc()) {
-            $rows[] = [
-                'id' => (int) $row['id'],
-                'vards' => (string) $row['vards'],
-            ];
+            $person = Person::fromRow($row);
+            $persons[] = $person->id === $activePersonId ? $person->makeActive() : $person;
         }
 
-        return $rows;
+        return $persons;
+    }
+
+    public function getPersonById(int $id): ?Person
+    {
+        $result = $this->runQuery("SELECT * FROM personas WHERE id = $id LIMIT 1");
+
+        if ($result === false || $result->num_rows === 0) {
+            return null;
+        }
+
+        return Person::fromRow($result->fetch_assoc());
     }
 
     public function runQuery(string $query): bool|mysqli_result

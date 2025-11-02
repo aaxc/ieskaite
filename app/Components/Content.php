@@ -9,12 +9,9 @@ use App\Entities\Person;
 use App\Repositories\PersonRepository;
 use App\Validators\Validator;
 
-readonly class Menu
+readonly class Content
 {
-    /**
-     * @var array<int, Person>
-     */
-    public array $persons;
+    private Person $person;
 
     public function __construct(
         private PersonRepository $repository,
@@ -23,11 +20,16 @@ readonly class Menu
         $personId = $this->request['person'] ?? 1;
         Validator::validate($personId);
 
-        $this->persons = $this->repository->getPersonList((int) $personId);
+        $this->person = $this->repository->getPersonById((int) $personId);
+    }
+
+    public function getPerson(): Person
+    {
+        return $this->person;
     }
 }
 
-function menu(array $request): Menu
+function content(array $request): Content
 {
-    return new Menu(new PersonRepository(new Database()), $request);
+    return new Content(new PersonRepository(new Database()), $request);
 }

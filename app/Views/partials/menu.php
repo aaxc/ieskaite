@@ -7,10 +7,10 @@
     <nav>
         <ul>
             <?php
-            foreach ($menu->items as $item): ?>
+            foreach ($menu->persons as $person): ?>
                 <li>
-                    <a href="?person=<?php echo $item['id'] ?>">
-                        <?php echo$item['vards'] ?>
+                    <a class="<?php echo $person->active ? 'active' : ''; ?>" href="?person=<?php echo $person->id ?>">
+                        <?php echo $person->name ?>
                     </a>
                 </li>
             <?php
